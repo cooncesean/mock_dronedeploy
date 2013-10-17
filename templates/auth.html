@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Mock DroneDeploy</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/mock_dronedeploy.css') }}" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <section id='header'>
+            <img src='{{ url_for('static', filename='img/logo.png') }}' />
+        </section>
+        <section id='fade'></section>
+
+        <section id='content'>
+            <h1>Hi, [Mock User]!</h1>
+            <h3>
+                Will you allow DD-Analytics access to your
+                <span>flight history</span> and <span>fleet info</span>?
+            </h3>
+            <br /><br />
+            <div>
+                <input type='button' class='btn btn-danger btn-lg' value='No' id='btn-no' />
+                &nbsp;
+                <input type='button' class='btn btn-success btn-lg' value='Yes' id='btn-yes' />
+            </div>
+        </section>
+
+        {# Handle button clicks #}
+        <script>
+            window.onload = function(){
+                var btn_no = document.getElementById('btn-no');
+                var btn_yes = document.getElementById('btn-yes');
+                var no_alert_msgs = [
+                    'Cmon Man!', 'Just click yes, you know you want to.', 'You have trust issues....',
+                ];
+
+                // Handle 'no' button clicks
+                btn_no.onclick = function(){
+                    alert(no_alert_msgs[Math.floor(Math.random() * no_alert_msgs.length)]);
+                };
+
+                // Handle 'yes' button clicks
+                btn_yes.onclick = function(){
+                    window.location.replace("http://ddanalytics-env-cajk5kpbae.elasticbeanstalk.com/login/?token=1");
+                };
+            }
+        </script>
+
+    </body>
+</html>
